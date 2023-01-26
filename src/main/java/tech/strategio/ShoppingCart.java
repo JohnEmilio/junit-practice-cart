@@ -26,7 +26,7 @@ public class ShoppingCart {
     public void removeItem(Product item)
             throws ProductNotFoundException {
         if (!items.remove(item)) {
-            throw new ProductNotFoundException();}
+            throw new ProductNotFoundException("Milk not found in shopping cart");}
     }
 
     public int getItemCount() {
