@@ -1,14 +1,12 @@
 package tech.strategio;
 
 
-import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 public class ProductTest {
     /*
@@ -32,37 +30,41 @@ Hint: insert the call in a try block and put a fail() after the call to removeIt
 
     @Test
     public void testInitialShoppingCartCount(){
-        ShoppingCart newCart = new ShoppingCart();
-        assertEquals(0, newCart.getItemCount(), .001);
+//        ShoppingCart newCart = new ShoppingCart();
+        assertEquals(0, cart.getItemCount());
     }
-
 
     @Test
     public void testAddOneItemToShoppingCart () {
         cart.addItem(toothpaste);
-        assertEquals(1,cart.getItemCount(), .001);
+        assertEquals(1,cart.getItemCount());
     }
 
     @Test
     public void testBalanceForShoppingCartIsUpdated() {
         cart.addItem(toothpaste);
-        // expected is the price of the item, actual is the price of the cart, delta is whatever
-        assertEquals(2.99, cart.getBalance(), .5);
+        // expected is the price of the item, actual is the price of the cart
+        assertEquals(2.99, cart.getBalance());
     }
     @Test
     public void testItemIsRemovedFromCart () throws ProductNotFoundException {
         cart.removeItem(toothpaste);
-        assertEquals(0, cart.getItemCount(), .001);
+        assertEquals(0, cart.getItemCount());
     }
 
     @Test
-    public void testThrowExceptionForItemNotInCart () throws ProductNotFoundException{
+    public void testThrowExceptionForItemNotInCart () {
         try{
             cart.removeItem(milk);
-            fail("Item not found in shopping cart");
+            fail("Item not found in cart");
         }
         catch(ProductNotFoundException e) {
-            assertNotNull(e);
+            Assertions.assertNotNull(e);
         }
     }
+    @Test
+    public void testJUnit5TestForThrowingException () {
+        Assertions.assertThrows(ProductNotFoundException.class, () -> cart.removeItem(milk));
+    }
+
 }
